@@ -40,6 +40,7 @@ export default class QuoteList extends Component {
 				</div>
 
 				<div className='QuoteLists-quotes'>{trumpet}</div>
+				<TwitterFeed />
 			</div>
 		);
 	}
