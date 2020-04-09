@@ -3,6 +3,7 @@
   grid-template-columns: 20% 60% 20px;
   grid-template-rows:500px;
   justify-content: stretch;
+  
 }
 
 .QuoteList-sideBar {
@@ -19,4 +20,11 @@
 
 .QuoteList-background {
   background-color: white
+}
+
+.QuoteList-moreGenius{
+  background: red;
+  border-radius: 20px;
+  border: 1px solid red;
+  padding : 10px
 }

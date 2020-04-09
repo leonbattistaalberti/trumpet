@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import QuoteList from './QuoteList';
-import TwitterFeed from './TwitterFeed';
+//import TwitterFeed from './TwitterFeed';
 
 function App () {
 	return (

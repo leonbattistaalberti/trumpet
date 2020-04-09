@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Quote from './Quote';
 import './QuoteList.css';
-import TwitterFeed from './TwitterFeed';
+//import TwitterFeed from './TwitterFeed';
 import { v4 as uuidv4 } from 'uuid';
 
 const API_URL = 'http://tronalddump.io/random/quote';
@@ -13,11 +13,18 @@ export default class QuoteList extends Component {
 	};
 	constructor (props) {
 		super(props);
-		this.state = { quoteText: [] };
+		this.state = {
+			quoteText : JSON.parse(window.localStorage.getItem('quote')) || '[]'
+		};
+		this.getQuotes = this.getQuotes.bind(this);
 	}
 
 	// call API
-	async componentDidMount () {
+	componentDidMount () {
+		if (this.state.quoteText.length === 0) this.getQuotes();
+	}
+
+	async getQuotes () {
 		let quoteText = [];
 		while (quoteText.length < this.props.numOfQuotes) {
 			let response = await axios.get(API_URL);
@@ -25,7 +32,10 @@ export default class QuoteList extends Component {
 		}
 		// Add 10 random quotes to state
 		this.setState({ quoteText: quoteText });
-		//console.log(this.state);
+		window.localStorage.setItem('quote', JSON.stringify(quoteText));
+		JSON.parse(window.localStorage.getItem('quote')).map((q) =>
+			console.log(q.quote)
+		);
 	}
 
 	handleVote (id, delta) {
