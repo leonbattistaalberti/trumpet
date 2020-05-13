@@ -39,12 +39,19 @@ export default class QuoteList extends Component {
 	}
 
 	handleVote (id, delta) {
-		this.setState((prevState) => ({
-			quoteText : prevState.quoteText.map(
+		this.setState((prevState) => {
+			quoteText: prevState.quoteText.map(
 				(q) => (q.id === id ? { ...q, votes: q.votes + delta } : q)
-			)
-		}));
+			);
+		}),
+			() => {
+				window.localStorage.setItems(
+					'quote',
+					JSON.stringify(this.state.quoteText)
+				);
+			};
 	}
+
 	render () {
 		// Create 5 Quotes components
 		return (
